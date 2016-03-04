@@ -1,13 +1,13 @@
 ##BACKPACK
 ####Bottle.py application structure for fast start
-Backpack is a bottle.py boilerplate with all necessary utilites which can help you get started fast and develop your applications rapidly.
+Backpack is a bottle.py boilerplate with all necessary utilities which can help you get started fast and develop your applications rapidly.
 <br>
 
 **On board:**
 
 - Configuration<br>
-Add your config options to 'config/config.ini',<br>
-Add banned ip addresses to 'config/netban.dat'
+Add your config options to `config/config.ini`,<br>
+Add banned ip addresses to `config/netban.dat`
 
 - Registration / Login
 <br>
