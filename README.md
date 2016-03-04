@@ -5,9 +5,6 @@ Backpack is a bottle.py boilerplate with all necessary utilities which can help 
 
 **On board:**
 
-- Configuration<br>
-Add your config options to `config/config.ini`,<br>
-Add banned ip addresses to `config/netban.dat`
 
 - Registration / Login
 <br>
@@ -49,6 +46,10 @@ Add your own globals at wsgi.py<br>
 <br>
 Access user session data trough `request.environ.get('beaker.session')`<br>
 Access logged in user using `request.user`
+
+- Configuration<br>
+Add your config options to `config/config.ini`,<br>
+Add banned ip addresses to `config/netban.dat`
 
 
 ###Getting started
