@@ -5,15 +5,17 @@ Backpack is a bottle.py boilerplate with all necessary utilites which can help y
 
 **On board:**
 
-- Configuration
-Add your config options to 'config/config.ini',
+- Configuration<br>
+Add your config options to 'config/config.ini',<br>
 Add banned ip addresses to 'config/netban.dat'
 
 - Registration / Login
+<br>
 See users.py
 
 - User sessions
-Access user session data trough `request.environ.get('beaker.session')`
+<br>
+Access user session data trough `request.environ.get('beaker.session')`<br>
 Access logged in user using `request.user`
 
 - Access management
@@ -43,10 +45,10 @@ def index():
 	return {}
 ```
 
-- Template globals
-1. Access current `request` {{request}}
-2. Pop flash messages using `flashes()`
-3. Add your own globals at wsgi.py
+- Template globals<br>
+Access current `request` {{request}}<br>
+Pop flash messages using `flashes()`<br>
+Add your own globals at wsgi.py<br>
 
 ###Getting started
 
