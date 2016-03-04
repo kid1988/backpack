@@ -3,6 +3,9 @@ PATH = os.path.dirname(__name__)
 sys.path.append(os.path.join(PATH,'packages'))
 
 import bottle, json
+from bottle import request,abort, hook, error
+from beaker.middleware import SessionMiddleware
+from bottle.ext.mongo import MongoPlugin
 app = bottle.default_app()
 app.config.load_config(os.path.join(PATH, "config/config.ini"))
 
@@ -23,9 +26,7 @@ mongo = MongoPlugin(uri=app.config['mongodb.uri'], db=app.config['mongodb.dbname
 app.install(mongo)
 app = SessionMiddleware(app, app.config['session'])
 
-from bottle import request,abort, hook, error
-from beaker.middleware import SessionMiddleware
-from bottle.ext.mongo import MongoPlugin
+
 
 
 with open(os.path.join(PATH,'views/error.html'), 'r') as f:
