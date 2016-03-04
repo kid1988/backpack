@@ -1,0 +1,8 @@
+bottle
+bottle-redis
+bottle-mongo
+beaker
+gevent
+git+https://github.com/Nekmo/gevent-websocket.git
+git+https://github.com/nesterow/sendmail_wrapper.git
+werkzeug

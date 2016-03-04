@@ -1,0 +1,55 @@
+% rebase('base.html', title=get('title'))
+<div class="container">
+<nav class="navbar navbar-light text-xs-center" style="font-family:monospace;border-radius:0px;">
+    <a class="navbar-brand" href="#">LITELAB</a>
+    <ul class="nav navbar-nav pull-xs-right">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">About<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Software</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Services</a>
+      </li>
+    </ul>
+  <div class="pull-xs-right">
+    % if not request.user:
+     <a class="btn btn-warning-outline" href="/login">
+       Login
+     </a>
+    % end
+  </div>
+ </nav>
+
+ <div class="jumbotron text-xs-center" >
+     <br><br>
+     <h2>Web applications that fit your needs</h2>
+     <br><br><br>
+     <a href="#" class="btn btn-primary-outline">
+       More
+     </a>
+ </div>
+
+
+ <div class="row">
+  <div class="col-md-4 text-xs-center">
+    <h2>Nothing useless</h2>
+  </div>
+  <div class="col-md-4 text-xs-center">
+    <h2>Industrial standards</h2>
+  </div>
+  <div class="col-md-4 text-xs-center">
+    <h2>Service Inculded</h2>
+  </div>
+ </div>
+
+
+</div>
+
+<div class="text-xs-center col-xs-12" style="background:#fff;position:fixed;bottom:15px;">
+  <hr>
+  <a href="#" class="btn btn-danger-outline col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+    Contact
+  </a>
+</div>

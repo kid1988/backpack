@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{title or ''}}</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/node_modules/tether/dist/css/tether.min.css">
+    <link rel="stylesheet" href="/node_modules/tether/dist/css/tether-theme-basic.min.css">
+    <link rel="stylesheet" href="/node_modules/sweetalert/dist/sweetalert.css">
+    <style media="screen">
+      .alert-box{
+        position: fixed;
+        z-index: 100;
+        width:100%;
+        height: auto;
+        top:15%;
+      }
+      .alert{
+        font-size: 1.4em!important;
+        font-family: monospace;
+        text-transform: uppercase;
+        text-align: center;
+        border-radius: 0px !important;
+      }
+      #loading-backcrop{
+        position: fixed;
+        top:0px;left:0px;
+        width:100%;
+        height: 9999px;
+        z-index: 1000;
+        background: rgba(100,100,100,.1);
+      }
+      #loading{
+        position: fixed;
+        top:20%;left:50%;
+        margin-left: -100px;
+        width:200px;
+        height: 200px;
+        /*background: #000;*/
+      }
+      #loading img{
+        -webkit-animation:spin 2s linear infinite;
+        -moz-animation:spin 2s linear infinite;
+        animation:spin 2s linear infinite;
+      }
+      @-moz-keyframes spin { 100% { -moz-transform: rotate(-360deg); } }
+      @-webkit-keyframes spin { 100% { -webkit-transform: rotate(-360deg); } }
+      @keyframes spin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
+    </style>
+    <script>
+      setTimeout(function(){
+        window.backcrop = document.getElementById('loading-backcrop');
+        window.loading = document.getElementById('loading');
+        window.addEventListener('load',function(){
+          $(backcrop).hide();
+          });
+      },100);
+      setTimeout(function(){
+        $(backcrop).hide();
+      },120000);
+    </script>
+  </head>
+  <body>
+    <div id="loading-backcrop">
+      <div id="loading">
+        {{!icon('cycle',200)}}
+      </div>
+    </div>
+    <div class="alert-box">
+    % for alert in flashes():
+      <div class="alert alert-{{alert['status']}} col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{alert['message']}}
+      </div>
+    % end
+   </div>
+    {{!base}}
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/tether/dist/js/tether.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      setTimeout(function(){$(".alert").alert('close');},4000);
+    </script>
+  </body>
+</html>
