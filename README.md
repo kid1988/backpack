@@ -15,7 +15,7 @@ Ready to use register and login controllers and templates
 from bottle import protected
 @route('/')
 def index():
-	protected('admin') #only admin pass further
+	protected('admin') #only admin group pass
 	return {}
 ```
 
