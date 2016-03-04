@@ -71,3 +71,6 @@ Access logged in user using `request.user`
 . Add new python module with your web applications <br>
 . Add html templates to the views directory <br>
 . Import your module in 'imports.py' <br>
+
+####License
+BSD
