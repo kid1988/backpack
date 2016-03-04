@@ -11,12 +11,7 @@ Add banned ip addresses to 'config/netban.dat'
 
 - Registration / Login
 <br>
-See users.py
-
-- User sessions
-<br>
-Access user session data trough `request.environ.get('beaker.session')`<br>
-Access logged in user using `request.user`
+Ready to use register and login controllers and templates
 
 - Access management
 ```python
@@ -32,7 +27,7 @@ def index():
 from bottle import flash
 @route('/')
 def index():
-	flash('Message', 'status')
+	flash('Message', 'error')
 	return {}
 ```
 
@@ -50,6 +45,12 @@ Access current `request` {{request}}<br>
 Pop flash messages using `flashes()`<br>
 Add your own globals at wsgi.py<br>
 
+- User sessions
+<br>
+Access user session data trough `request.environ.get('beaker.session')`<br>
+Access logged in user using `request.user`
+
+
 ###Getting started
 
 ####Installation
@@ -59,14 +60,14 @@ Add your own globals at wsgi.py<br>
 ```
 
 ####Run dev. server
-- Edit 'config/config.ini'
-- Start a mongod instance
-- Run dev server
+. Edit 'config/config.ini' <br>
+. Start a mongod instance <br>
+. Run dev server <br>
 ```sh
 	python3 wsgi.py
 ```
 
 ####Add functionality
-- Add new python module with your web applications
-- Add html templates to the views directory
-- Import your module in 'imports.py'
+. Add new python module with your web applications <br>
+. Add html templates to the views directory <br>
+. Import your module in 'imports.py' <br>
