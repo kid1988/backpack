@@ -2,29 +2,31 @@ import os,sys,functools
 PATH = os.path.dirname(__name__)
 sys.path.append(os.path.join(PATH,'packages'))
 
-import bottle, json
+import bottle, json, ast
 from bottle import request,abort, hook, error
 from beaker.middleware import SessionMiddleware
 from bottle.ext.mongo import MongoPlugin
 app = bottle.default_app()
 app.config.load_config(os.path.join(PATH, "config/config.ini"))
+app.config.load_config(os.path.join(PATH, "config/translations.ini"))
 
-APACHE = app.config.get('site.apache') == 'true'
-DEV = DEBUG = app.config.get('site.debug') == 'true'
+for key in app.config.keys():
+	try:
+		data = app.config[key]
+		app.config[key] = ast.literal_eval(data)
+	except:
+		continue
+
+APACHE = app.config.get('site.apache')
+DEV = DEBUG = app.config.get('site.debug')
 
 if not DEBUG and not APACHE:
     import gevent.monkey; gevent.monkey.patch_all()
 
-app.config['session'] = {
-    'session.type': 'file',
-    'session.cookie_expires': 3600*24*10,
-    'session.data_dir': '/tmp/websessiondata',
-    'session.auto': True
-}
 
 mongo = MongoPlugin(uri=app.config['mongodb.uri'], db=app.config['mongodb.dbname'], json_mongo=True)
 app.install(mongo)
-app = SessionMiddleware(app, app.config['session'])
+app = SessionMiddleware(app, app.config)
 
 
 
@@ -47,11 +49,16 @@ def flashes(json=False):
     else:
         return msgStack
 
+def translate(text):
+	language = bottle.request.headers.get('Accept-Language', "en-US").split(',')[0].strip()[:2]
+	address = "%s.%s"%(language, text.strip())
+	return bottle.request.app.config.get(address.lower()) or text
+	
 #extend bottle view
-bottle.view = functools.partial(bottle.view,
+bottle.view = functools.partial(bottle.view, _ = translate,
     icon = svgicon,
     flashes = flashes,
-    request = request
+    request = request,
 )
 
 def flash(msg,ctype='default'):
@@ -94,7 +101,6 @@ def before_request():
             reg = re.compile(pattern)
             if reg.match(ip):
                 return abort(403, "Forbidden")
-
     #session
     sessionData = request.environ.get('beaker.session')
     request.user = None

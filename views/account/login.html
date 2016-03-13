@@ -1,39 +1,46 @@
 % rebase('base.html', title=get('title'))
 <br>
+<center>
+	<a href="/">{{request.app.config.get('site.company', 'Company Name')}}</a>
+</center>
 <style media="screen">
   form .input-group{
     width: 100% !important;
   }
+  form {
+	margin-top:10%;
+  }
 </style>
+
 <form class="logform col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4" method="post">
-  <div class="row">
-    <h2 style="text-align:center;font-family:monospace;">
+  <div class="row text-xs-center">
+    <h2 style="font-family:monospace;">
       {{!icon('login',64)}} <br>
-      Login
+      {{_('Login')}}
     </h2>
   </div>
   <br>
   <div class="input-group input-group-lg">
-      <input type="email" name='email' class="form-control" id="_email" placeholder="Email">
+      <input type="email" name='email' class="form-control" id="_email" placeholder="{{_('Email')}}">
   </div>
   <div class="input-group input-group-lg">
-      <input type="password" name='password' class="form-control" id="_passw1" placeholder="Password">
+      <input type="password" name='password' class="form-control" id="_passw1" placeholder="{{_('Password')}}">
   </div>
   <br>
   <div class="input-group input-group-lg" style="text-align:center;">
-      <button type="submit" class="btn btn-block btn-primary-outline">Sign in</button>
-      <a href="/register" class="btn">Register</a>
+      <button type="submit" class="btn btn-block btn-warning-outline">{{_('Sign In')}}</button>
+      <a href="/register" class="btn">{{_('Sign Up')}}</a>
   </div>
 </form>
 <script>
-window.addEventListener('load',function(){
+code(function(){
   $('.logform').on('submit',function(ev){
     var wrong = false;
     $(this).find('input').each(function(i,e){
       if(!e.value)wrong=true;
     })
     if(wrong){
-      swal('All fields are mandatory.');
+      swal("{{_('All fields are mandatory.')}}");
       ev.preventDefault();
     }
   });

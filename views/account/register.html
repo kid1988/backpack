@@ -1,15 +1,21 @@
 % rebase('base.html', title=get('title'))
 <br>
+<center>
+	<a href="/">{{request.app.config.get('site.company', 'Company Name')}}</a>
+</center>
 <style media="screen">
   form .input-group{
     width: 100% !important;
+  }
+  form {
+	margin-top:10%;
   }
 </style>
 <form class="regform col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4" method="post">
   <div class="row">
     <h2 style="text-align:center;font-family:monospace;">
       {{!icon('lock',64)}} <br>
-      Registration
+      {{_('Registration')}}
     </h2>
   </div>
   <br>
@@ -17,31 +23,31 @@
       <input type="text" class="form-control" id="_name" placeholder="Name" name = "name" value="{{get('name','')}}">
   </div>
   <div class="input-group input-group-lg">
-      <input type="email" name='email' class="form-control" id="_email" placeholder="Email" value="{{get('email', '')}}">
+      <input type="email" name='email' class="form-control" id="_email" placeholder="{{_('Email')}}" value="{{get('email', '')}}">
   </div>
   <div class="input-group input-group-lg">
-      <input type="password" name='password' class="form-control" id="_passw1" placeholder="Password">
+      <input type="password" name='password' class="form-control" id="_passw1" placeholder="{{_('Password')}}">
   </div>
   <div class="input-group input-group-lg">
-      <input type="password" name='repeat_password' class="form-control" id="_passw2" placeholder="Repeat Password">
+      <input type="password" name='repeat_password' class="form-control" id="_passw2" placeholder="{{_('Repeat Password')}}">
   </div>
   <br>
   <div class="input-group input-group-lg" style="text-align:center;">
-      <button type="submit" class="btn btn-block btn btn-primary-outline">
-        Sign up
+      <button type="submit" class="btn btn-block btn btn-warning-outline">
+        {{_('Sign up')}}
       </button>
-      <a href="/login" class="btn">Login</a>
+      <a href="/login" class="btn">{{_('Login')}}</a>
   </div>
 </form>
 <script>
-window.addEventListener('load',function(){
+code(function(){
   $('.regform').on('submit',function(ev){
     var wrong = false;
     $(this).find('input').each(function(i,e){
       if(!e.value)wrong=true;
     })
     if(wrong){
-      swal('All fields are mandatory.');
+      swal("{{_('All fields are mandatory.')}}");
       ev.preventDefault();
     }
   });
